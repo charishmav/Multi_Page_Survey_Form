@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Page Survey</title>
+</head>
+<body>
+  <h1>Page 2: Additional Questions</h1>
+  <form id="surveyForm">
+    <label for="favoriteColor">Favorite Color:</label>
+    <input type="text" id="favoriteColor" required><br><br>
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" rows="4" cols="50" required></textarea><br><br>
+    <button type="button" onclick="saveSurvey()">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('favoriteColor').value = sessionStorage.getItem('favoriteColor') || '';
+    document.getElementById('feedback').value = sessionStorage.getItem('feedback') || '';
+
+    function saveSurvey() {
+      sessionStorage.setItem('favoriteColor', document.getElementById('favoriteColor').value);
+      sessionStorage.setItem('feedback', document.getElementById('feedback').value);
+      submitSurvey();
+    }
+
+    function submitSurvey() {
+      const surveyData = {
+        name: sessionStorage.getItem('name'),
+        age: sessionStorage.getItem('age'),
+        favoriteColor: sessionStorage.getItem('favoriteColor'),
+        feedback: sessionStorage.getItem('feedback')
+      };
+
+      // Simulating data submission using an alert
+      alert('Survey Data: ' + JSON.stringify(surveyData));
+    }
+  </script>
+</body>
+</html>
